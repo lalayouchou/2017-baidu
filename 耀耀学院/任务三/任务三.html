@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="task3.css" type="text/css">
+</head>
+<body>
+<form action="">
+	<input type="radio" id="school" value="school" name="form"><label for="school">在校生</label>
+	<input type="radio" id="city" value="city" name="form"><label for="city">非在校生</label>
+	<div id="box" class="hidden">
+		<div id="box1">
+			<select name="sch" id="sch">
+				<option value="浙江">浙江</option>
+				<option value="湖南">湖南</option>
+				<option value="北京">北京</option>
+			</select>
+		</div>
+		<div id="box2">
+			<select name="sch1" id="sch1" class="show">
+				<option value="浙江">浙江工业大学</option>
+				<option value="浙江">浙江大学</option>
+				<option value="浙江">浙江爱吃大学</option>
+			</select>
+			<select name="sch2" id="sch2" class="hidden">
+				<option value="湖南混子大学">湖南混子大学</option>
+				<option value="湖南混子大学">湖南混子大学</option>
+				<option value="湖南混子大学">湖南混子大学</option>
+			</select>
+				<select name="sch3" id="sch3" class="hidden">
+				<option value="北京混子大学">北京混子大学</option>
+				<option value="北京混子大学">北京混子大学</option>
+				<option value="北京混子大学">北京混子大学</option>
+			</select>
+		</div>
+	</div>	
+	<div id="box3" class="show">
+		<label for="danwei">就业单位</label><input type="text" id="danwei">
+	</div>
+	<script src="task3.js" ></script>
+</form>
+</body>
+</html>

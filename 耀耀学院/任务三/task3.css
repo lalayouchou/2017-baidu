@@ -1,0 +1,25 @@
+#box{
+	position: absolute;
+	top:50px;
+	left: 10px;
+	display: flex;
+	width: 500px;
+	height: 25px;
+}
+#box3{
+	position: absolute;
+	top:50px;
+	left: 10px;
+	width: 500px;
+	height: 25px;
+	display: none;
+}
+#sch1,#sch2,#sch3{
+	position: absolute;	
+}
+.hidden{
+	display:none!important;
+}
+.show{
+	display: flex!important;
+}

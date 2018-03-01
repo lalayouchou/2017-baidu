@@ -1,0 +1,43 @@
+*{
+	margin: 0;
+	padding:0;
+}
+.content{
+	width:100%;
+	padding-top: 10px;
+}
+.row{
+	width:calc(100% - 20px);
+	margin: 0 10px;
+	overflow: hidden;/*
+	.row:after, .row:before{
+	content: "";
+	display: table;
+	clear: both;
+	清除浮动的另外一种方式
+}*/
+	
+}
+div[class*=box]{
+	box-sizing:border-box;/*怪异模型，border包括在width当中*/
+	margin: 10px;
+	background: #eee;
+	border: 1px solid #000;
+	height: 50px;
+	float: left;
+}
+.box_xs_2{
+	width: calc(16.67% - 20px);
+}
+.box_xs_3{
+	width: calc(25% - 20px);
+}
+.box_xs_6{
+	width: calc(50% - 20px);
+}
+.box_xs_8{
+	width: calc(66.66% - 20px);
+}
+.box_xs_12{
+	width: calc(100% - 20px);
+}

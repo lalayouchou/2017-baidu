@@ -1,0 +1,757 @@
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
+a{color:#2d374b;text-decoration:none} 
+a:hover{color:#cd0200;text-decoration:underline} 
+em{font-style:normal} 
+li{list-style:none}  
+table{border-collapse:collapse;border-spacing:0} 
+p{word-wrap:break-word} 
+img{border:0;vertical-align:middle}
+/*引用字体设置*/
+aside .iconfont{
+	font-size:15px;
+	font-weight: bold;
+	display: inline-block;
+	width: 20px;
+}
+/*导航栏设置*/
+.header{
+	width:100%;
+	height:55px;
+	background: rgb(33,137,191);
+}
+.logo{
+	width: 38px;
+	height: 38px;
+	border: none;
+	display: inline-block;
+	position: relative;
+	top:10px;
+	left:80px;
+}
+.search{
+	float: right;
+}
+.search input{
+	width: 315px;
+	height: 30px;
+	margin-top: 13px;
+	margin-right: 30px; 
+	border:none;
+	border-radius:15px; 
+	text-indent:40px;
+	outline:none;
+}
+.search a{
+	font:15px/15px  "黑体";
+	color:#fff;
+	margin-right: 50px;	
+}
+#search{
+	position: absolute;
+	top:18.5px;
+	right: 27.5%;
+}
+/*左侧标题栏设置*/
+aside{
+	width: 20%;
+	height:1210px;
+	font: 15px/48px "黑体";
+	background: rgb(42,46,61);
+	color: #6e8095;
+}
+aside>ul>li{
+	margin-left:60px;
+}
+aside>ul>li:first-child{
+	width: calc(100% - 60px);
+	height: 190px;
+	background: rgb(56,61,77);
+	line-height: 30px;
+	margin: 0;
+	padding-left: 60px;
+	padding-top:20px;
+}
+aside span{
+	color: #fff;
+}
+.two>li{
+	margin-left: 20px;
+	line-height: 30px;
+}
+.three>li{
+	margin-left: 40px;
+	line-height: 30px;
+}
+/*左侧个人头像部分*/
+aside>div{
+	width:100%;
+	height:155px;
+	position: relative;
+}
+/*设置头像？？这里要好好研究一下*/
+/*背景图片看看能不能居中*/
+aside>div>div:nth-child(1){
+	float: left;
+	width: 56px;
+	height: 56px;
+	border: 2px solid #fff;
+	text-align: center;
+	border-radius: 30px;
+	line-height: 52px;
+	margin: 10px 0 0 40px;
+}
+aside>div>p:nth-child(2){
+	float: right;
+	margin: 2em 6em 0 0;
+	font:16px/20.5px "黑体";
+	color:#fff;
+}
+aside>div>div:nth-child(3){
+	float: left;
+	line-height: 20px;
+	text-align: center;
+	font-size:12px;
+	position: absolute;
+	left:60px;
+	bottom: 20px;
+}
+aside>div>div:nth-child(3)::after{
+	content:"";
+	display: inline-block;
+	width: 2px;
+	height: 40px;
+	background:#6e8095;
+	position: absolute;
+	left:55px;
+	bottom:0;
+}
+
+aside>div>div:nth-child(4){
+	float: right;
+	line-height: 20px;
+	text-align: center;
+	font-size:12px;
+	position: absolute;
+	right: 100px;
+	bottom: 20px;
+}
+/*右边具体内容：*/
+.content{
+	width: 1010px;
+	height: 1210px;
+	background: rgb(237,237,237);
+	position: absolute;
+	top:55px;
+	left:20%;
+
+}
+.nav{
+	width: 100%;
+	height: 30px;
+	background: #fff;
+	font:12px/30px "黑体";
+	color: #6e8095;
+	padding-left: 30px; 
+}
+.nav span:first-child{
+	display: inline-block;
+	width: 40px;
+}
+/*搜索列表*/
+.con-search{
+	width: 890px;
+	height: 90px;
+	margin: 20px auto 0;
+	background: #fff;
+	position: relative;
+}
+.con-search label{
+	font: 12px/26px "黑体";
+	color: #aaa;
+}
+.con-search label:after{
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height:10px;
+}
+.con-search select{
+	font: 12px/25px "黑体";
+	color: #000;
+	height:  25px;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	text-indent:5px;
+	font-weight: 500;
+}
+.con-search input[type="submit"]{
+	width: 50px;
+	height: 26px;
+	font: 12px/26px "黑体";
+	color:#fff;
+	background: rgb(56,138,193);
+	border: none;
+	border-radius: 2px;
+}
+.con-search .jiaohuan{
+	background: url("image/jiaohuan.png") no-repeat;
+	width: 28px;
+	height: 38px;
+}
+.con-search .jiaohuan span{
+	font:12px/12px "黑体";
+	color: #fff;
+	background: #aaa;
+	margin-top:13px;
+	margin-left:14px;
+	display: inline-block;
+}
+/*各个组件的定位*/
+.con-search form>div{
+	display: inline-block;
+}
+.con-search form>div[class*=form]{
+	height: 25px;
+}
+.con-search .form-1{
+	position: absolute;
+	top:16px;
+	left:30px;
+}
+.con-search .form-1 select{
+	width: 70px;
+}
+.con-search .form-2{
+	position: absolute;
+	top:16px;
+	left:180px;
+}
+.con-search .form-2 select{
+	width: 120px;
+}
+.con-search .form-3{
+	position: absolute;
+	bottom:16px;
+	left:180px;
+}
+.con-search .form-3 select{
+	width: 120px;
+}
+.con-search .form-4{
+	position: absolute;
+	top:16px;
+	left:400px;
+}
+.con-search .form-4 select{
+	width: 120px;
+}
+.con-search .form-5{
+	position: absolute;
+	top:16px;
+	left:580px;
+}
+.con-search .form-5 select{
+	width: 70px;
+}
+.con-search .form-6{
+	position: absolute;
+	bottom: 16px;
+	left:400px;
+}
+.con-search .form-6 select{
+	width: 70px;
+}
+.con-search .form-7{
+	position: absolute;
+	bottom: 16px;
+	left:530px;
+}
+.con-search .form-7 select{
+	width: 120px;
+}
+.con-search input{
+	position: absolute;
+	top:32px;
+	right:90px;
+}
+.con-search .jiaohuan{
+	position: absolute;
+	top:25px;
+	left:345px;
+}
+select[id^=form]:not(#form4){
+	background:url(image/向下.png) no-repeat  transparent;
+	background-position: 90% 50%;
+	background-size: 10px 10px;
+}
+#form7,#form2,#form3{
+	background-position: 94% 50%!important;
+}
+/*时间栏设置*/
+.time{
+	width: 890px;
+	height: 60px;
+	margin:10px auto 0;
+}
+.time p{
+	font:12px "微软雅黑";
+	margin-top:10px;
+
+}
+.time i{
+	color: #ec6500;
+		font:21px "微软雅黑";
+}
+.time span{
+	color: #aaa;
+	font-size: 12px;
+}
+.time>div{
+	display: inline-block;
+	height: 60px;
+	width: 110px;
+	background: #fff;
+	vertical-align:top;
+	text-align: center;
+	margin-right: 2px;
+}
+.time>div:nth-of-type(1),
+.time>div:nth-of-type(8){
+	width: 30px;
+}
+.time>div:nth-of-type(9){
+	width:105px;
+	margin:0;
+
+}
+.time>div:nth-of-type(9) p{
+	height: 32px;
+	line-height: 32px;
+	margin: 14px 0 0 0;
+}
+.time .time-2{
+	border-top:2px solid blue; 
+	margin-top:-2px;
+}
+.time .time-1 i{
+ 	padding-left: 5px;
+	line-height: 60px;
+}
+.time .time-8 i{
+	padding-right: 5px; 
+	line-height: 60px;
+}
+/*四月份数值统计*/
+.text{
+	width: 890px;
+	margin: 25px auto 0;
+	font:12px "微软雅黑";
+}
+.box{
+	width:890px;
+	height: 75px;
+	margin: 10px auto 0;
+}
+.box [class^=box]{
+	width: 200px;
+	height: 75px;
+	background: #fff;
+	float: left;
+	margin-right: 30px;
+	line-height:75px;
+	box-sizing: border-box; 
+}
+.box [class^=box] p{
+	font:12px/24px "黑体";
+	text-align:left;
+	float: left;
+	padding:15px 0 0 20px ;
+}
+.box .box-1{
+	border: 2px solid #d8d9db;
+	border-left: 3px solid #43b29d;
+
+}
+.box .box-2{
+	border: 2px solid #d8d9db;
+	border-left: 3px solid #388ac1;
+}
+.box .box-3{
+	border: 2px solid #d8d9db;
+	border-left: 3px solid #d04a36;
+}
+.box .box-4{
+	border: 2px solid #d8d9db;
+	margin: 0;
+	border-left: 3px solid #e2cd46;
+}
+.box .color-1{
+	width: 60px;
+	height: 45px;
+	background: #43b29d;
+	margin:  15px 20px 0 0;
+	float: right;
+}
+.box .color-2{
+	width: 60px;
+	height: 45px;
+	background: #388ac1;
+	margin:  15px 20px 0 0;
+	float: right;
+}
+.box .color-3{
+	width: 60px;
+	height: 45px;
+	background: #d04a36;
+	margin:  15px 20px 0 0;
+	float: right;
+}
+.box .color-4{
+	width: 60px;
+	height: 45px;
+	background: #e2cd46;
+	margin:  15px 20px 0 0;
+	float: right;
+}
+/*项目列表样式：*/
+.table1{
+	width: 535px;
+	height: 355px;
+	background: #fff;
+	margin:20px 0  0 60px;
+	border-radius: 5px;
+	border: 2px solid #d8d9db;
+}
+.table-head{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background: #f4f5f6;
+	border-radius: 5px 5px 0 0 ;
+	font:12px/40px "黑体";
+	color: #aaa;
+}
+.table-head span{
+	display: inline-block;
+	margin-left: 20px;
+}
+.table-1 ul{
+	height: 28px;
+	vertical-align: top;
+}
+
+.table-1 ul li{
+	width: 85px;
+	height: 30px;
+	background: #aaa;
+	border-radius: 2px 2px 0 0 ;
+	display: inline-block;
+	font:12px/28px "微软雅黑";
+	text-align: center;
+	transform: translateY(-2px);
+}
+.table-1 ul li:first-child{
+	background: #fff;
+	border: 2px solid #aaa;
+	height: 30px;
+	box-sizing: border-box;
+	border-bottom: 2px solid #fff;
+	border-radius: 2px 2px 0 0 ;
+	margin: 0;
+		transform: translateY(0);
+}
+.table-1 .ta{
+	height:28px;
+	width: 490px;
+	margin: 20px 0 0 20px;
+}
+.table-1 .tab{
+	width: 490px;
+	height: 252px;
+	margin-left: 20px;
+	border: 2px solid #aaa;
+	border-radius: 0 5px 5px 5px;
+} 
+/*表格部分设置*/
+table{
+	font:12px/30px "宋体";
+	font-weight: normal;
+	margin: 30px auto 0;
+}
+table tr th{
+	width: 100px;
+	height: 30px;
+	font-weight: normal;
+	text-align: center;
+	border: 1.5px solid #aaa;
+
+}
+table tr td{
+	width: 100px;
+	height: 30px;
+	font-weight: normal;
+	text-align: center;
+	border: 1.5px solid #aaa;
+}
+/*负责人列表设置*/
+.table2{
+	width: 335px;
+	height: 355px;
+	background: #fff;
+	border-radius: 5px;
+	float: right;
+	border: 2px solid #d8d9db;
+	margin-top:-359px;
+	margin-right:60px;
+}
+.table-2 table tbody tr span{
+	font:12px "微软雅黑";
+	color: #c3c2c2;
+}
+.table-2 table tbody tr{
+	font:12px/20px "微软雅黑";
+}
+.table-2{
+	width: 280px;
+	margin: 0 auto;
+}
+.table-two tbody tr th,
+.table-two tbody tr td{
+	text-align: left;
+	border: none;
+}
+/*表格的具体样式*/
+.table-two{
+	margin: 20px 0 0 0 ;
+	width: 280px;
+}
+.table-two td,
+.table-two th{
+	display: inline-block;
+	height: 45px;
+	padding-left: 15px;
+}
+.bor td:first-child{
+	width: 79px;
+	border:1px solid #ccc;
+	border-left:none;
+}
+.bor td:last-child{
+	width: 170px;
+	border:1px solid #ccc;
+	border-left:none;
+	border-right: none;
+}
+.big td{
+	width: 280px;
+	height: 145px;
+	border-bottom: 1px solid #ccc!important;
+}
+.table2-footer{
+	font:12px "微软雅黑" ;
+	color: #c3c2c2;
+	margin-top:10px;
+}
+.table2-footer label{
+	margin-left: 27.5px;
+}
+.table2-footer label span{
+	display: inline-block;
+	transform: translateY(-2px);
+}
+.table2-footer input[type="submit"]{
+	width: 50px;
+	height: 26px;
+	font: 12px/26px "黑体";
+	color:#fff;
+	background: rgb(56,138,193);
+	border: none;
+	border-radius: 2px;
+	transform: translateX(140px);
+}
+/*设置复选框样式*/
+ .table2-footer img{
+ 	display: relative;
+ 	transform: translate(-14px,-3px);
+ 	z-index: 1;
+ }
+ .table2-footer input[type="radio"]{
+ 	display: relative;
+	opacity:0;
+	z-index: 100;
+
+ }
+ /*日历方面设置*/
+ .table3,
+ .table4{
+ 	height: 355px;
+ 	background: #fff;
+ 	border-radius: 5px;
+ 	border: 2px solid #d8d9db;
+ }
+ .table3{
+ 	width: 350px;
+ 	float: left;
+ 	margin: 20px 0 0 60px;
+ }
+ .table3 .button{
+ 	width: 310px;
+ 	margin: 15px auto 0;
+ }
+ .table3 .button select
+ {
+ 	font:12px "黑体";
+ 	height:  22px;
+ 	 background: #fff;
+ 	 border: 1px solid #f4f5f6;
+ 	 appearance:none;
+ 	 -webkit-appearance:none;	
+
+ }
+ .table3 #year{
+	width: 62px;
+ }
+ .table3 #mouth{
+ 	width: 85px;
+ }
+  .table3 #day{
+ 	width: 75px;
+ }
+ .table3 .button button{
+ 	 	font:12px "黑体";
+ 	 	width: 62px;
+ 	 	height: 22px;
+ 	 	background: #fff;
+ 	 	border: 1px solid #f4f5f6;
+ 	 	padding: 0;
+ }
+ .date .date1{
+ 	margin-top:20px;
+ }
+ .date .date1 td{
+ 	border:none;
+ 	font:11px "黑体";
+ 	width: 44px;
+ 	height: 42px;
+ }
+ .date .date1 th{
+ 	border:none;
+ 	font:12px "黑体";
+  	width: 44px;
+ 	height: 30px;
+ }
+ .date .date1 tr:first-child{
+ 	border-top:2px solid #ececec;
+ 	border-bottom:2px solid #ececec;
+ }
+ .date .date1 .red{
+ 	color: #c9161d;
+ }
+ .date .date1 .yellow{
+ 	width:42px;
+ 	height: 38px;
+ 	border: 1px solid orange;
+ }
+  .date .date1 p{
+ margin-top:5px;
+  }
+ /*汽车品牌排行榜设置*/
+  .table4{
+ 	width:520px;
+ 	float: right;
+ 	margin: 20px 60px 0 0;
+ }
+ .table4 table{
+ 	margin-top:15px;
+ }
+ .table4 tr td{
+ 	font:12px/24px "黑体";
+ 	height: 25px;
+ 	border:1.5px solid #d8d9db; 
+ }
+  .table4 tr th{
+  	font:13px/24px "黑体";
+  	height: 25px;
+  	border:1.5px solid #d8d9db;
+  }
+  /*动态表格颜色*/
+  .table4 tr:hover{
+  	background: #f4f5f6;
+  }
+/*第一列宽度*/
+.table4 td:nth-child(1),
+.table4 th:nth-child(1)
+{
+	width:68px;
+}
+.table4 td:nth-child(2),
+.table4 th:nth-child(2)
+{
+	width:90px;
+}
+.table4 td:nth-child(3),
+.table4 th:nth-child(3)
+{
+	width:290px;
+	text-align: left;
+	text-indent: 30px;
+}
+/*表格颜色 条*/
+.table4 td div{
+	float: right;
+	margin:9px 25px 0 0 ;
+	width: 170px;
+	height:6px;
+	background: #d8d9db;
+	position: relative;
+}
+.table-4 div span{
+	display: inline-block;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+
+}
+.table-4 .a1{
+	background: #ec6d5e;
+	width: 85%;
+}
+.table-4 .a2{
+	background: #ef8050;
+	width: 70%;
+}
+.table-4 .a3{
+	background: #fe9e4f;
+	width: 65%;
+}
+.table-4 .a4{
+	background: #7ecaf0;
+	width: 60%;
+}
+.table-4 .a5{
+	background: #7ecaf0;
+	width: 55%;
+}
+.table-4 .a6{
+	background: #7ecaf0;
+	width: 50%;
+}
+.table-4 .a7{
+	background: #7ecaf0;
+	width: 45%;
+}
+.table-4 .a8{
+	background: #7ecaf0;
+	width: 40%;
+}
+.table-4 .a9{
+	background: #7ecaf0;
+	width: 35%;
+}
+.table-4 .a10{
+	background: #7ecaf0;
+	width: 30%;
+}

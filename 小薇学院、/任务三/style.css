@@ -1,0 +1,64 @@
+body{
+	margin:0;
+	padding:20px 20px 0 20px;
+	font-family:"黑体";
+	
+}
+img{
+	width:80px;
+	height:80px;
+}
+/*总体块状元素；*/
+.zongti{
+	background:#fff;
+	padding:20px;
+	background:#eee;
+	 overflow: auto;
+	
+	
+}
+
+/*左边块状元素；*/
+.zongti .zuo{
+	width:158px;
+	border:1px solid #999;
+	background:#fff;
+	padding:20px;
+	float:left;
+	text-indent:top;
+	
+}
+.zongti .zuo p{
+	margin:0px;
+	display:inline;
+	position:relative;
+	bottom:64px;
+	
+}
+/*右边块状元素；*/
+.zongti .you{
+	width:80px;
+	border:1px solid #999;
+	background:#fff;
+	padding: 0 19px 20px 19px;
+	float:right;
+	
+}
+
+.zongti .you img{
+	margin-top:20px;
+	
+}
+/*中间块状元素；*/
+.zongti .zhong{
+	border:1px solid #999;
+	background:#fff;
+	padding:20px;
+	margin:0 20px 0 20px;
+	display:inline-block;
+	width: calc(100% - 200px - 120px - 82px);
+	
+}
+.zongti .zhong p{
+	text-indent:2em;
+}

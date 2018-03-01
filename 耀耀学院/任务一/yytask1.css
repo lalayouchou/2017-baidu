@@ -1,0 +1,38 @@
+div{
+	width: 300px;
+	height: 50px;
+	margin: 20px auto 0;
+}
+form label{
+	font:12px "黑体";
+	margin-right: 20px;
+}
+form input[type="text"]{
+	width: 150px;
+	height: 20px;
+	border: 2px solid #aaa;
+	border-radius: 3px;
+	text-indent: 1em;
+}
+form input[type="submit"]{
+	width: 50px;
+	height: 24px;
+	border-radius: 3px;
+	background: rgb(0,0,200);
+	border: none;
+	color: #fff;
+	margin-left: 20px;
+}
+div p{
+	font: 10px "黑体";
+	color: #aaa;
+	margin-left: 50px;
+}
+.green{
+	border-color:  green!important;
+	color: green;
+}
+.red{
+	border-color:  red!important;
+	color:red;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>flexbox布局</title>
+	<style type="text/css">
+		@media screen and (min-width: 640px) {
+		.container{
+			flex-flow:row nowrap;/*主轴从左到右，不换行*/
+			-webkit-flex-flow:row nowrap;
+			justify-content: space-between;/*项目在主轴上的对齐方式，space-between，两端对齐中间间隔相等；*/
+			-webkit-justify-content:space-between;
+			-webkit-align-items:center ;
+			align-items:center;/*项目在垂直方向上的对齐方式，居中*/
+		}}
+		@media screen  and (min-width: 0) and (max-width: 640px) {
+		.container{
+			-webkit-flex-flow: row wrap;
+			flex-flow: row wrap;
+			-webkit-justify-content: space-between;
+			justify-content: space-between;
+			-webkit-align-items: flex-start;/*项目在垂直方向上的对齐方式，上对齐*/
+			align-items: flex-start;
+		}
+		.item4{
+			order:-2;/*项目权重,数字越小排越前面,默认为0*/
+		}}
+	body{
+	margin: 0;
+	padding: 20px
+	}
+	.container{
+		width: 100%;
+		display: flex; /*将父盒子设为flex属性，Chrome和Safari需要添加前缀-webkit-*/
+		display: -webkit-flex;
+		margin: 0;
+	}
+	div[class^="item"]{
+		box-sizing: border-box;
+		width: 150px;
+		border: 1px solid red;
+		margin-bottom:20px;
+	}
+	.item1{
+		height: 120px;
+	}
+	.item2{
+		height: 100px;
+	}
+	.item3{
+		height: 40px;
+	}
+	.item4{
+		height: 200px;
+		border-color: blue!important;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="item1">1</div>
+		<div class="item2">2</div>
+		<div class="item3">3</div>
+		<div class="item4">4</div>
+	</div>
+</body>
+</html>

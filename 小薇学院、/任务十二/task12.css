@@ -1,0 +1,108 @@
+table{
+	text-align: center;
+	font-size:15px;
+}
+table tr th,
+table tr td{
+	height: 20px;
+}
+table tr th:first-of-type,
+table tr td:first-child
+{
+	width: 50px;
+}
+table tr th:nth-child(2),
+table tr td:nth-child(2){
+	width: 150px;
+}
+table tr th:nth-child(3),
+table tr td:nth-child(3){
+	width: 50px;
+}
+table tr th{
+	color: #fff;
+	background: #000;
+	font-weight: normal;
+}
+table tbody tr:nth-child(2) td,
+table tbody tr:nth-child(3) td,
+table tbody tr:nth-child(4) td{
+	color: red;
+}
+table tbody tr:nth-child(odd) td{
+	background: rgb(230,230,230);
+}
+div{
+	width: 264px;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+input{
+	width: 100px;
+	height: 20px;
+	transition:1s;
+}
+input:focus{
+	width: 200px;
+	height: 25px;
+}
+/*轮播图*/
+.color {
+	width: 264px;
+	height: 150px;
+	position:absolute;
+	top:400px;
+	left: 10px;
+	overflow: hidden;
+}
+.prant{
+	position: absolute;
+	top:400px;
+	left: 10px;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+}
+a{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	color: #fff;
+	background: rgba(50,50,50,0.5);
+	text-decoration: none;
+	line-height: 30px;
+
+}
+a:nth-of-type(1){
+	right: 80px;
+}
+a:nth-of-type(2){
+	right: 40px;
+}
+.color1{
+	position:absolute;
+	top:0;
+	left:0;
+	width:calc(264px * 3 );
+	height: 150px;
+	z-index: -1;
+}
+div #color-1{
+	width:264px;
+	height: 150px;
+	background: blue;
+	float: left;
+}
+div #color-2{
+	width:264px;
+	height: 150px;
+	background: green;
+	float: left;
+}
+div #color-3{
+	width:264px;
+	height: 150px;
+	background: red;
+	float: left;
+}

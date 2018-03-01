@@ -1,0 +1,43 @@
+
+body{
+	margin:0;
+	padding:0;
+	width:100%
+	height:100%
+	background:#fff;
+}
+.juxing{
+    position: absolute;
+    background: #ccc;
+    width: 400px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+ margin-left:-200px;
+ margin-top:-100px;
+	
+	
+	
+}
+.zuoshang{
+	width:50px;
+	height:50px;
+	background:#fc0;
+	border-radius: 0 0 50px 0;
+	
+	
+	
+}
+.youshang{
+	width:50px;
+	height:50px;
+	background:#fc0;
+	border-radius:50px 0 0 0;
+position: absolute;
+	 right: 0;
+    bottom: 0;
+	
+	
+}
+
+
