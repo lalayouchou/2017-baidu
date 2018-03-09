@@ -1,0 +1,37 @@
+div{
+	width: 90%;
+	background: #EDED57;
+	border-radius: 5px;
+	height: 500px;
+	margin: 60px auto;
+	box-shadow: 0px 0px 10px #000;
+	position: relative;	
+}
+ul{
+	position: absolute;
+	list-style: none;
+	background: #fff;
+	display: inline-block;
+	width: 150px;
+	text-align: center;
+	border: 1px solid #000;
+	padding-left: 0;
+
+	box-shadow: 3px 3px 6px #aaa;
+	border-radius: 3px;
+
+	margin: 0;
+}
+li{
+	padding: 10px 0;
+	background: rgb(245, 245, 245);
+}
+li:hover{
+	background: #aaa;
+}
+.show{
+	opacity: 1;
+}
+.hide{
+	opacity: 0;
+}
