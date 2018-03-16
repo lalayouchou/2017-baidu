@@ -13,11 +13,16 @@
 		text-align: center;
 	}
 .box>div{
+	position: relative;
 	display: inline-block;
 	width: 20px;
 	height: 20px;
 	margin: 0;
 
+}
+.box div[class*="item"]{
+	width: 20px;
+	height: 20px;
 }
 .box{
 	display: inline-block;
@@ -26,16 +31,111 @@
 	margin: 50px 0 0 0 ;
 
 }
+.center{
+	position: absolute;
+	top: 50%;
+	left:  50%;
+	transform: translate(-50%,-50%);
+}
+.box input{
+	opacity: 0;
+	z-index: 5;
+}
+/*雪碧图定位*/
+.box .items1{
+	background: url('icon.png') no-repeat -23px -8px;
+}
+.box input[type="radio"]:checked+div{
+	background: url('icon.png') no-repeat -58px -8px;
+}
+.box .items2{
+	background: url('icon.png') no-repeat -23px -28px;
+}
+.box input[type="checkbox"]:checked+div{
+	background: url('icon.png') no-repeat -58px -27px;
+}
+
+/*伪元素制作*/
+.box2{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	margin: 50px 0 0 0 ;
+}
+.box2>div{
+	position: relative;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+
+}
+.box2 div[class*='item']{
+	width: 14px;
+	height: 14px;
+}
+.box2 input{
+	opacity: 0;
+	z-index: 5;
+}
+.item1{
+	border-radius: 7px;
+	border: 1px solid #ccc;
+}
+.item1::after{/*制作圆点*/
+	opacity: 0;
+	content: "";
+	width: 6px;
+	height: 6px;
+	display: block;
+	border-radius: 3px;
+	background: red;
+	position: absolute;
+	top: 50%;
+	left:  50%;
+	transform: translate(-50%,-50%);
+}
+.item2{
+	border: 1px solid #ccc;
+}
+.item2::after{/*制作对勾*/
+	opacity: 0;
+	content: "";
+	width: 7px;
+	height: 4px;
+	display: block;
+	border-left: 2px solid red;
+	border-bottom: 2px solid red;
+	position: absolute;
+	transform: translate(-50%,-50%);
+		transform: rotate(-45deg);
+		top: 20%;
+		left:  20%;
+}
+.label:checked+div{
+	border-color: red;
+}
+.label:checked+div::after{
+	opacity: 1;
+}
+
+
 
 	
 	</style>
 </head>
 <body>
 <div class="box">
-	<div><input type="radio" name="songjie"></div>
-	<div><input type="radio" name="songjie"></div>
-	<div><input type="checkbox"> </div>
-	<div><input type="checkbox"> </div>
+	<div><input type="radio" name="songjie" class="center"><div class="items1 center"></div></div>
+	<div><input type="radio" name="songjie" class="center"><div class="items1 center"></div></div>
+	<div><input type="checkbox" class="center"> <div class="items2 center"></div></div>
+	<div><input type="checkbox" class="center"> <div class="items2 center"></div></div>
+</div>
+<div class="box2">
+	<div><input type="radio" name="songjie" class="center label"><div class=" item1 center"></div></div>
+	<div><input type="radio" name="songjie" class="center label"><div class=" item1 center"></div></div>
+	<div><input type="checkbox" class="center label"> <div class=" item2 center"></div></div>
+	<div><input type="checkbox" class="center label"> <div class=" item2 center"></div></div>
 </div>
 </body>
 </html>

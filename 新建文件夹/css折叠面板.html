@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>css折叠面板</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+		.bor{
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0 1px 1px #ccc;
+		}
+		.content{
+			padding: 20px 0;
+			border: 1px solid #ccc;
+			width: 60%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		input{
+			display: none;
+		}
+		.content div{
+			width: 80%;
+			margin: 20px auto;
+		}
+		label{
+			display: block;
+			background: #eee;
+			padding: 10px 30px;
+		}
+		p{	
+			word-wrap:wrap-break;
+			border-top: 1px solid #ccc;
+			text-indent: 2rem;
+			height: 0;
+			overflow: hidden;
+		}
+		/* 选择动画 ，利用label可以引用表单元素，和radio和checkbox的单选性和多选性 */
+		input[name='1']:checked+p{
+			padding: 20px 20px;
+			height: 90px;
+			transition: height .2s linear;
+		}
+			input[name='1']:not(:checked)+p{/*这里一定要把input放在p前面*/
+			padding: 0 20px;	
+			transition: all .2s linear;
+		}
+
+</style>
+</head>
+<body>
+	<div class="content bor">
+		<div class="bor"><label for="song">加油</label><input type="radio" name="1" id="song"><p>1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum delectus beatae accusamus fugit consequuntur temporibus blanditiis quidem illum at harum id, voluptates perferendis tempore, veniam corporis, nesciunt distinctio magni ipsa.</p></div>
+		<div class="bor"><label for="song2">不知道些什么</label><input type="radio" name="1" id="song2"><p>1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum delectus beatae accusamus fugit consequuntur temporibus blanditiis quidem illum at harum id, voluptates perferendis tempore, veniam corporis, nesciunt distinctio magni ipsa.</p></div>
+		<div class="bor"><label for="song3">乱写</label><input type="radio" name="1" id="song3"><p>1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum delectus beatae accusamus fugit consequuntur temporibus blanditiis quidem illum at harum id, voluptates perferendis tempore, veniam corporis, nesciunt distinctio magni ipsa.</p></div>
+	</div>
+</body>
+</html>
