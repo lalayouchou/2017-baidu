@@ -1,4 +1,4 @@
-window.onload=function() {
+/*window.onload=function() {
 	var data={
 		name:
 		[
@@ -11,7 +11,7 @@ window.onload=function() {
 		isSort:[2,3]//第二,三列进行排序
 	};
 	var table1= new Table(data);
-}
+}*/
 
 (function() {
 
@@ -29,9 +29,13 @@ window.onload=function() {
 		};
 
 	
-		this.getConfig();
+		this.getConfig();//使用getConfig()方法，重置默认参数
 
 		console.log(this.config);
+
+		this.createTable();//使用createTable()方法，生成表格
+
+
 
 
 	}
@@ -55,6 +59,36 @@ window.onload=function() {
 				this.config.isSort=data.isSort;
 			}
 		},
+
+		"createTable":function() {
+			var config=this.config;
+			var div=document.querySelectorAll('div.my-table-js');
+			var table=document.createElement("table");
+
+			for (var i = 0; i < config.name.length; i++) {
+				var tr=document.createElement("tr");
+				if(i===0){
+					for (var j = 0; j < config.name[0].length; j++) {
+						var th=document.createElement("th");
+						th.innerHTML = config.name[0][j];
+						tr.appendChild(th);
+					}
+				}
+				if(i!==0){
+					for (var k = 0; k < config.name[i].length; k++) {
+						var td=document.createElement("td");
+						td.innerHTML = config.name[i][k];
+						tr.appendChild(td);
+					}
+				}
+				table.appendChild(tr);
+			}
+
+			div[0].appendChild(table);
+
+			console.log(div);
+
+		}
 
 	}
 
