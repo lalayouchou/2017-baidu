@@ -1,0 +1,27 @@
+div.my-table{
+	display: inline-block;
+}
+
+div.my-table table{
+	border: 2px solid  #ccc;
+	font: 1rem "黑体";
+	margin: 10px;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+div.my-table table th{
+	border: 2px solid  #ccc;
+	color: #fff;
+	width: 6rem;
+	height: 2rem;
+	background: #636363FF;
+	
+}
+
+div.my-table table td{
+	border: 2px solid  #ccc;
+	color: #636363FF;
+	width: 6rem;
+	height: 2rem;
+}
