@@ -11,6 +11,7 @@ div.my-table table{
 }
 
 div.my-table table th{
+	position: relative;
 	border: 2px solid  #ccc;
 	color: #fff;
 	width: 6rem;
@@ -24,4 +25,26 @@ div.my-table table td{
 	color: #636363FF;
 	width: 6rem;
 	height: 2rem;
+}
+div.my-table i{
+	position: absolute;
+	display: inline-block;
+	border-width:  10px 5px 10px 5px;
+	border-style:solid ;
+	border-color:transparent;
+	right: 10px;
+	cursor: pointer;
+}
+div.my-table i.i-up{
+	visibility: hidden;
+	border-bottom-color: #FFF;
+	top: -5px;
+}
+div.my-table i.i-dn{
+	border-top-color: #FFF;
+	bottom: -5px;
+	visibility: hidden;
+}
+div.my-table i.show{
+	visibility: visible;
 }

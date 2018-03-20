@@ -8,11 +8,13 @@
 </head>
 <body>
 	<div class="my-table my-table-js"></div>
-
+	<div class="my-table my-table-js"></div>
+	<div class="my-table my-table-js"></div>
 </body>
 <script>
 	window.onload=function() {
-		var data={
+		var data=[
+		{
 			name:
 			[
 			["姓名","语文","英语","数学","总分"],
@@ -22,8 +24,20 @@
 			],
 			sort:"ODN",//按降序，按升序OUP,默认为all
 			isSort:[2,3]//第二,三列进行排序
-		};
-		var table1= new Table(data);
+		},
+		{
+			name:
+			[
+			["姓名","语文","英语","数学","总分"],
+			["小可爱",80,90,70,240],
+			["小涵涵",90,60,90,240],
+			["小仙女",60,100,90,230]
+			],
+			sort:"all",//按降序，按升序OUP,默认为all
+			isSort:[1,3]//第一,三列进行排序
+		}
+		];
+		Table.init(data);
 	}
 </script>
 </html>
