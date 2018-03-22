@@ -1,0 +1,82 @@
+div{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.outer{
+	display: inline-block;
+	width: 46px;
+	height: 46px;
+	border: 2px solid #D12D66FF;
+	border-radius: 50%;
+	border-top-color: transparent;
+	-webkit-animation: outer 2s infinite linear;
+	-o-animation: outer 2s infinite linear;
+	animation: outer 2s infinite linear;
+}
+
+.ouro{
+	top: 5px;
+	left: 5px;
+	position: absolute;
+	display: block;
+	width: 40px;
+	height: 40px;
+}
+
+.left,.right{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	background: #D12D66FF;
+}
+.right{
+	left: 50%;
+	border-radius: 0 20px 20px 0;
+}
+.left{
+	border-radius:20px 0 0 20px;
+}
+.right .anim{
+	transform-origin: left center;
+	-webkit-animation: anim-right 4s infinite linear;
+	-o-animation: anim-right 4s infinite linear;
+	animation: anim-right 4s infinite linear;
+
+}
+.left .anim{
+	transform-origin: right center;
+	-webkit-animation: anim-left 4s infinite linear;
+	-o-animation: anim-left 4s infinite linear;
+	animation: anim-left 4s infinite linear;
+
+}
+
+.anim{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	background: #eee;
+}
+
+@keyframes anim-right {
+	0%{transform: rotate(0);}
+	25%{transform: rotate(180deg);}
+	50%{transform: rotate(180deg);}
+	75%{transform:rotate(360deg);}
+	100%{transform:rotate(360deg)}
+}
+@keyframes anim-left {
+	0%{transform: rotate(0);}
+	25%{transform: rotate(0deg);}
+	50%{transform: rotate(180deg);}
+	75%{transform:rotate(180deg);}
+	100%{transform:rotate(360deg)}
+}
+
+
+@keyframes outer {
+	to{transform: rotate(360deg);}
+}

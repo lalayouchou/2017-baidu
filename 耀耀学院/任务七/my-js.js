@@ -109,16 +109,14 @@
 					th[index].appendChild(iDn);
 				}}catch(error){return alert('请检查输入的数据的isSort属性');}
 			}else{
-				try{for (var f = 0; f < config.name[0].length; f++) {
-					let index=config.isSort[f];
+				for (var f = 1; f < config.name[0].length; f++) {
 					let th=node.getElementsByTagName('th');
 					let iUp=document.createElement("i");
 					iUp.classList.add("i-up")
-					th[index].appendChild(iUp);
+					th[f].appendChild(iUp);
 					let iDn=document.createElement("i");
 					iDn.classList.add("i-dn")
-					th[index].appendChild(iDn);
-				}}catch(error){return alert('请检查输入的数据的isSort属性');}
+					th[f].appendChild(iDn);}
 			}
 
 		},

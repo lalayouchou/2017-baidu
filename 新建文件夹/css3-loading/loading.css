@@ -1,0 +1,120 @@
+/* 居中 */
+.center{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%)
+}
+/* 外圈动画 */
+.big-box{
+	width: 100px;
+	height: 100px;
+}
+.box{
+	border-radius: 50px;
+	width: 100%;
+	height: 100%;
+	display: -webkit-flex;
+	display: flex;
+	animation: rotate 2s infinite linear;
+}
+.arc{
+	box-sizing: border-box;
+	width: 50%;
+	height: 100%;
+	border:2px solid red;
+}
+.arc1{
+	transform-origin: 100% 50%;
+	transform: rotate(90deg);
+	border-radius: 50px 0 0  50px;
+	border-right: none;
+}
+.arc2{
+	border-radius: 0 50px 50px 0;
+	border-left: none;
+}
+@keyframes rotate{
+	0%{transform: rotate(0);}
+	100%{transform: rotate(360deg);}
+}
+/* 内圈动画 */
+.box2{
+	width: 80px;
+	height: 80px;
+}
+.sm-box{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	border-radius: 40px 0 0 40px;
+	top: 0;
+	left: 0;
+	background: blue;
+}
+.sm-box-0{
+	left: 50%;
+	border-radius: 0 40px 40px 0;
+
+}
+.sm-box-1{
+	z-index: 1;
+	background-color: red;
+	transform-origin: 100% 50%;
+	-webkit-animation: small  2s infinite linear;
+	-o-animation: small  2s infinite linear;
+	animation: small  2s infinite linear;
+}
+.sm-box-2{
+	z-index: 2;
+	transform-origin: 100% 50%;
+	-webkit-animation: small-2  2s infinite linear;
+	-o-animation: small-2  2s infinite linear;
+	animation: small-2  2s infinite linear;
+}
+.sm-box-3{
+	border-radius: 0 40px 40px 0;
+	z-index: 3;
+	left: 50%;
+	background: red;
+	opacity: 0;
+	transform-origin: 0 50%;
+	-webkit-animation: small-1 2s infinite linear;
+	-o-animation: small-1 2s infinite linear;
+	animation: small-1 2s infinite linear;
+}
+
+.sm-box-4{
+	opacity: 0;
+	left: 50%;
+	border-radius: 0 40px 40px 0;
+	z-index: 4;
+	transform-origin: 0 50%;
+	-webkit-animation: small-3  2s infinite linear;
+	-o-animation: small-3  2s infinite linear;
+	animation: small-3  2s infinite linear;
+}
+@keyframes small {
+	0%{transform: rotate(0);}
+	25%{transform: rotate(180deg);}
+	100%{transform: rotate(180deg);}
+}
+@keyframes small-1 {
+	25%{opacity: 0;transform: rotate(0);}
+	26%{opacity: 1;}
+	49%{opacity: 1;}
+	50%{transform: rotate(180deg);}
+	100%{transform: rotate(180deg);opacity: 1;}
+}
+@keyframes small-2 {
+	50%{transform: rotate(0deg);}
+	75%{transform: rotate(180deg);}
+	100%{transform: rotate(180deg);}
+}
+@keyframes small-3 {
+	75%{opacity: 0;transform: rotate(0);}
+	76%{opacity: 1;}
+	99%{opacity: 1;}
+	100%{transform: rotate(180deg);}
+}
+
