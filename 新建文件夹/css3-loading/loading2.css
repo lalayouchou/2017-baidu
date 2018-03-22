@@ -1,16 +1,18 @@
+/* 整体内容居中 */
 div{
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 }
+/* 对外圈内容的设置 */
 .outer{
 	display: inline-block;
 	width: 46px;
 	height: 46px;
 	border: 2px solid #D12D66FF;
-	border-radius: 50%;
-	border-top-color: transparent;
+	border-radius: 50%;/* 设置为圆 */
+	border-top-color: transparent;/* 把外圈border其中之一设置为透明色，这样就可以使border变成四分之三圈 */
 	-webkit-animation: outer 2s infinite linear;
 	-o-animation: outer 2s infinite linear;
 	animation: outer 2s infinite linear;
@@ -30,17 +32,22 @@ div{
 	width: 50%;
 	height: 100%;
 	overflow: hidden;
+/* 	关键部分，父元素之外的子元素部分隐藏。
+这样旋转到父元素之外的元素就看不见了，这样就可以把父元素本来的颜色露出来 */
 	background: #D12D66FF;
 }
 .right{
 	left: 50%;
+	/* 将右边的元素移动至右侧，变成半圆形 */
 	border-radius: 0 20px 20px 0;
 }
 .left{
 	border-radius:20px 0 0 20px;
 }
 .right .anim{
+	/* 指定旋转的中心 */
 	transform-origin: left center;
+	/* 播放旋转动画 */
 	-webkit-animation: anim-right 4s infinite linear;
 	-o-animation: anim-right 4s infinite linear;
 	animation: anim-right 4s infinite linear;
@@ -62,6 +69,9 @@ div{
 }
 
 @keyframes anim-right {
+/* 	右侧动画先旋转，露出父元素颜色，动画四分之一位置，即右半圈颜色全部露出
+停止旋转，等到左半圈全部露出以后，开始旋转 */
+
 	0%{transform: rotate(0);}
 	25%{transform: rotate(180deg);}
 	50%{transform: rotate(180deg);}
