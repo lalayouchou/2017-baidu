@@ -47,7 +47,7 @@ input:focus{
 	width: 200px;
 	height: 25px;
 }
-/*轮播图*/
+/*�ֲ�ͼ*/
 .color {
 	width: 264px;
 	height: 150px;
@@ -55,8 +55,10 @@ input:focus{
 	top:400px;
 	left: 10px;
 	overflow: hidden;
+
 }
 .prant{
+	z-index: 2;
 	position: absolute;
 	top:400px;
 	left: 10px;
@@ -84,25 +86,42 @@ a:nth-of-type(2){
 	position:absolute;
 	top:0;
 	left:0;
-	width:calc(264px * 3 );
+	width:264px;
 	height: 150px;
-	z-index: -1;
+	margin: 0;
+	padding: 0;
+
+}
+div  .color1 div[id*="color"]{
+	width: 290px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -100%;
+
 }
 div #color-1{
-	width:264px;
-	height: 150px;
 	background: blue;
-	float: left;
 }
 div #color-2{
-	width:264px;
-	height: 150px;
 	background: green;
-	float: left;
 }
 div #color-3{
-	width:264px;
-	height: 150px;
 	background: red;
-	float: left;
+}
+.color1 div:target{
+	z-index: 2;
+	animation: OOO 2S linear forwards;
+}
+.color1 div:not(:target){
+	z-index: 1;
+	animation: AAA 2S linear;
+}
+@keyframes OOO {
+	0%{left:100%}
+	100%{left: 0;}
+}
+@keyframes AAA {
+	0%{left:0}
+	100%{left: -100%;}
 }
