@@ -1,0 +1,101 @@
+/* 整体内容居中 */
+div{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+/* 对外圈内容的设置 */
+.outer{
+	display: inline-block;
+	width: 46px;
+	height: 46px;
+	border: 2px solid #D12D66FF;
+	border-radius: 50%;/* 设置为圆 */
+	border-top-color: transparent;/* 把外圈border其中之一设置为透明色，这样就可以使border变成四分之三圈 */
+	-webkit-animation: outer 2s infinite linear;
+	-o-animation: outer 2s infinite linear;
+	animation: outer 2s infinite linear;
+}
+
+@keyframes outer {
+	to{transform: rotate(360deg);}
+}
+
+/* 内圈动画 */
+.ouro{
+	top: 5px;
+	left: 5px;
+	position: absolute;
+	display: block;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	background: #D12D66FF;
+/* 	这里使用了两套旋转动画，颜色背景相反，这样就能使动画看上去比较连贯，
+	一次旋转动画的效果是2秒钟，这里前两秒显示这套动画，后两秒隐藏 */
+	-webkit-animation: hide 4s infinite steps(1,end);
+	-o-animation: hide 4s infinite steps(1,end);
+	animation: hide 4s infinite steps(1,end);
+}
+.ouro span{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+}
+.anim{
+	/* 旋转物体 */
+	background: #7FC9FFFF;
+	border-radius: 20px 0 0 20px;
+	transform-origin: right center;
+	-webkit-animation: outer 2s infinite linear;
+	-o-animation: outer 2s infinite linear;
+	animation: outer 2s infinite linear;
+
+}
+.right{
+	/* 这里刚开始是隐藏的，等到旋转物体旋转到和此物体完全重合时显示 */
+	background: #7FC9FFFF;
+	border-radius: 0 20px 20px 0;
+	left: 50%;
+	-webkit-animation: show 2s infinite steps(1,end);
+	-o-animation: show 2s infinite steps(1,end);
+	animation: show 2s infinite steps(1,end);
+}
+.left{
+	/* 这里刚开始是显示的，层级比旋转物体高，在该范围内的旋转物体会被覆盖
+	，等到旋转物体旋转到和此物体完全重合时隐藏 */
+	background: #D12D66FF;
+	border-radius: 20px 0 0 20px;
+	-webkit-animation: hide 2s infinite steps(1,end);
+	-o-animation: hide 2s infinite steps(1,end);
+	animation: hide 2s infinite steps(1,end);
+}
+
+/* 第二套动画，颜色和第一套完全相反，上面的动画完成一次后，该动画显示 */
+.ouro2{
+	-webkit-animation: show 4s infinite steps(1,end);
+	-o-animation: show 4s infinite steps(1,end);
+	animation: show 4s infinite steps(1,end);
+}
+.ouro2 .anim{
+	-webkit-animation: outer 2s  infinite linear;
+	-o-animation: outer 2s  infinite linear;
+	animation: outer 2s  infinite linear;
+}
+.ouro2,.ouro2 .left{
+	background: #7FC9FFFF;
+}
+.ouro2 .right,.ouro2 .anim{
+	background: #D12D66FF ;
+}
+
+
+@keyframes show {
+	0%{opacity: 0;}
+	50%,100%{opacity: 1;}
+}
+@keyframes hide {
+	0%{opacity: 1;}
+	50%,100%{opacity: 0;}
+}
