@@ -1,0 +1,100 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html , body{
+	height: 100%;
+	/* //设置视口高度 */
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+/* 编辑器整体界面 */
+.main{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+
+	justify-content: space-around;
+	align-items: middle;
+}
+/* 编辑器左右页面共同设置 */
+.main .back{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 47%;
+
+}
+/* 编辑器编辑区设置 */
+.eidt{
+	box-shadow: 0 0 10px #aaa;
+	position: relative;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+/* 编辑区左侧数字显示 */
+.eidt .eidt-num{
+	background: #f2f2f2;
+	width: 60px;
+	min-height: 700px;
+	float: left;
+}
+.eidt-num .eidt-nums{
+	background:rgb(235,235,235);
+	color: #aaa;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	user-select: none;
+}
+/* 编辑区内容显示 */
+.eidt .eidt-text{
+	float: right;
+	background: #f2f2f2;
+	width: calc(100% - 60px);
+	min-height: 700px;
+}
+.eidt-text .eidt-texts{
+	height: 20px;
+	font-family: "微软雅黑";
+	line-height: 20px;
+	font-size: 14px;
+}
+
+/* 编辑区编辑块，textarea */
+.eidt .text{
+	background: #f2f2f2;
+	position: absolute;
+	width: calc(100% - 60px);
+	height: 20px;
+	z-index: 1;
+	left: 60px;
+	top: 0;
+	resize: none;
+	border: none;
+	outline: none;
+	line-height: 20px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	overflow: hidden;
+}
+
+
+/* 显示区编辑 */
+.preview{
+	box-shadow: 0 0 10px #aaa;
+	overflow-y: auto;
+}
+#preview{
+	box-sizing: border-box;
+	width: 100%;
+	padding:20px;
+}
+
+
+
+
+
