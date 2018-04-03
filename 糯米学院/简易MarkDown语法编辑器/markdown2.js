@@ -62,7 +62,9 @@
 				// 如果该层文本域值为空，则把该层文本删除
 				if(num>34){eidtNum.children().eq(num).remove();}
 				eidtText.children().eq(num).remove();
-				preview.children().eq(num).remove();
+				preview.find('#'+num).remove();
+
+
 				// 回到上一层,num减一，最多只能回退到第一层
 				if(num>0){
 				num--;
@@ -126,7 +128,7 @@
 
 				// 如果这里已经设置了该id的节点，就直接返回，不要用each方法，each方法是不按顺序来的
 				for (var i = 0; i < oldLength; i++) {
-					if(preview.children()[i]['id']===num.toString()){
+					if(preview.children()[i]['id']===num.toString()||preview.find("li[id='"+num+"']").length!==0){
 						return;
 					}
 				}
@@ -135,9 +137,35 @@
 			}
 	}
 	//动态修改内容函数
-	function C(val,num,value){
-		var val= value ? val.replace(value , '') : val;
-		var fin='#'+num;
+	function C(val,num,value,type,name){
+		var val,fin;
+		var type =type ? type : 0;
+		if(type===0){
+			val= value ? val.replace(value , '') : val;
+		}
+
+		if(type===1){
+			val = val.replace(value,'<'+name+'>$1</'+name+'>');
+		fin='#'+num;
+		preview.find(fin).html(val);
+		return;
+		}
+
+		if(type===2){
+		if(name==='a'){
+			 val = val.replace(value,'$1<a href= "$3">$2</a>');}
+		else{
+			val = val.replace(value,'<img src= "$2" title="$1">');
+			}
+		fin='#'+num;
+		preview.find(fin).html(val);
+		return;
+		}
+
+		if(type===3){
+			val= value ? val.replace(value , '') : val;
+		}
+		fin='#'+num;
 		preview.find(fin).text(val);
 		}
 
@@ -145,11 +173,25 @@
 	function D(num,name) {
 		var html;
 		var name=name ? name : 'p';
+
+		if(name==='ul'||name==="ol"){
+			if(preview.find("li[id='"+num+"']").length!==0){return;}
+			if(preview.find('#'+num).length!==0){preview.find('#'+num).remove();}
+			if(preview.find("li[id='"+(num-1)+"']").length===0||preview.find("li[id='"+(num-1)+"']").parent(name).length===0){
+				html=$('<'+ name+'><li id="'+num+'"></li>'+'</' + name + '>');
+				preview.append(html);
+			}else{
+				html=$('<li id="'+num+'"></li>');
+				preview.find("li[id='"+(num-1)+"']").parent(name).append(html);
+			}
+			return;
+		}
+
 		if(preview.find(name+"[id='"+num+"']").length!==0){return;}
 		if(preview.find('#'+num).length!==0){preview.find('#'+num).remove();}
-		html=$('<'+ name+' id="'+num+'">'+'</' + name + '>');
 
-		if(name==='p'){html.css('height','21px');}
+
+		html=$('<'+ name+' id="'+num+'">'+'</' + name + '>');
 
 		preview.append(html);
 	}
@@ -166,7 +208,23 @@
 				'h5':/^#{5}\s/,
 				'h6':/^#{6}\s/,
 				'hr':/^---$/
-			}]
+			},
+		// 这些不需要独占一行
+			{
+				'strong':/\*{2}(.+?)\*{2}/g,
+				'del':/~~(.+?)~~/g,
+				'i':/\*(.+?)\*/g,
+				'ins':/\+{2}(.+?)\+{2}/g,
+				'code':/\`(.+?)\`/g,
+			},{
+				'a':/([^!]|^)\[(.+)\]\((.+)\)/g,
+				'img':/\!\[(.+)\]\((.+)\)/g
+			},
+				{
+					'ul':/^\-\s/,
+					'ol':/^\d\.\s/
+				}
+			]
 
 		var arr=Object.getOwnPropertyNames(Reg[0]);
 
@@ -175,20 +233,76 @@
 				// 如果有匹配的，就执行节点创建函数，节点动态显示函数(去除匹配到的内容);
 				if(Reg[0][name].test(val)){
 					var value=Reg[0][name];
-					D(num,name);
+					D(num,name);//0表示独占一行元素
 					C(val,num,value);
 					return;
 					// 不执行接下去的内容
 				}
 		}
 
+		var arr2=Object.getOwnPropertyNames(Reg[1]);
 
+		for (var i = 0; i < arr2.length; i++) {
+			var name=arr2[i];
+			if(Reg[1][name].test(val)){
 
+				var value=Reg[1][name];
+
+				// 这里不改变节点类型，只是在该节点下添加子节点，相当于改变内容了
+				C(val,num,value,1,name);//1表示正则对象数组中检索值为1的值
+				return ;
+			}
+		}
+
+		var arr3=Object.getOwnPropertyNames(Reg[2]);
+
+		for (var i = 0; i < arr3.length; i++) {
+			var name=arr3[i];
+			if(Reg[2][name].test(val)){
+
+				var value=Reg[2][name];
+
+				// 这里不改变节点类型，只是在该节点下添加子节点，相当于改变内容了
+				C(val,num,value,2,name);
+				return ;
+			}
+		}
+
+		var arr4=Object.getOwnPropertyNames(Reg[3]);
+
+		for (var i = 0; i < arr4.length; i++) {
+			var name=arr4[i];
+			if(Reg[3][name].test(val)){
+
+				var value=Reg[3][name];
+
+				D(num,name);
+				C(val,num,value,3);
+				return ;
+			}
+		}
 		// 一般情况下，执行动态显示函数
 		D(num);
 		C(val,num);
 	}
+// 删除函数
+	function E() {
+		// 针对ul和ol
+		var ul=preview.find('ul');
+		var ol=preview.find('ol');
+		for (var i = 0; i < ul.length; i++) {
+			if($(ul[i]).children().length===0){
+				$(ul[i]).remove();
+			}
+		}
+		for (var j = 0; j < ol.length; j++) {
+			if($(ol[j]).children().length===0){
+				$(ol[j]).remove();
+			}
+		}
+	}
 
-
-
+/*4.2要解决的问题，在其他节点模式下，em等节点特殊显示
+em节点可以使用，而不是显示的代码
+*/
 })(jQuery);

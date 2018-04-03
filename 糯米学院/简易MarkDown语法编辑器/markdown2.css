@@ -85,6 +85,7 @@ html , body{
 
 /* 显示区编辑 */
 .preview{
+	padding-left: 20px;
 	box-shadow: 0 0 10px #aaa;
 	overflow-y: auto;
 }
@@ -94,7 +95,16 @@ html , body{
 	padding:20px;
 }
 
+/* 节点属性设置 */
+hr{
+	height: 3px;
+	margin: 10px 0;
+	background: #aaa;
 
+}
+p{
+	min-height: 21px;
+}
 
 
 
