@@ -1,0 +1,13 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.aSong{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	margin-top: 100px;
+	margin-left: 100px;
+	background: rgba(200, 200, 200, 0.7);
+	opacity: 0.5;
+}
