@@ -2,6 +2,9 @@
 //动画中心思想：在指定的时间内，从一个状态，变化为另一个状态
 
 let tween = require('./Tween.js');
+let timeline = require('./timeline.js');
+let style = require('./style.js');
+
 
 //任务初始状态
 const START_INITIAL = 0;
@@ -30,19 +33,44 @@ class aSong{
 		// 任务执行状态
 		this.start = START_INITIAL;
 		//默认赛贝尔曲线
-		this.easing = tween.Linear;
+/*		this.easing = tween.Linear;*/
+		//引入动画时间轴控制模块
+		this.timeline = new timeline();
+		//引入属性模块，处理输入的属性参数
+		this.style = new style(this.ele);
 	}
 
 /**
  * 	增加动画任务，add animation
- * @param  {object} attr  变化的css属性
- * @param 	duration      动画持续时间
- * @param 	easing        赛贝尔曲线
- * @param 	delay         延迟时间
+ * @param  {object} attr  变化的css属性,必须值
+ * @param 	duration      动画持续时间，默认1s
+ * @param 	easing        赛贝尔曲线，默认为'linear'
+ * @param 	delay         延迟时间,默认为0
  */
 	add(attr,duration,easing,delay){
+		let taskFn,
+			type;
+		let args = arguments;
+		//得到处理过的对象：
+/*		initial = {
+			attr:null,
+			duration:1000,
+			easing:'linear',
+			delay :0
+		};*/
+		let obj=style.initial(args);
+		//如果处理后没有属性值，加入一个直接切换下一个任务的同步任务
+		if(obj.attr===null){
+			taskFn=(next) =>{next();};
+			type = TASK_SNYC;
+		}else{
+			
+		}
 
 
+
+		this._add(taskFn,type);
+		return this;
 	}
 
 	// 需要执行的函数
