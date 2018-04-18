@@ -9,11 +9,14 @@ class style{
 		this.ele = ele;
 		this.css = window.getComputedStyle(this.ele);
 		this.easing = _easing();
-	}
-
-// 对颜色转换，转成rbga(),这里注意透明度opacity的叠加
-	color(attr){
-		
+		// 对于特殊数据的，先描述一下
+		this.sty = {
+			'C':['background-color','opacity'],
+			/* transform系列 */
+			'T':['rotateX','rotateY','translateX','translateY','scaleX','scaleY','skewX','skewY']
+		}
+		// 保存初始值，算法中需要
+		this.start = null;
 	}
 
 	initial(args){
@@ -26,7 +29,7 @@ class style{
 		let initial = {
 			attr:null,
 			duration:1000,
-			easing:'linear',
+			easing:['Linear'],
 			delay :0
 		};
 
@@ -51,8 +54,13 @@ class style{
 				key = (1000*parseFloat(key) | 0);
 				return num(key);
 			}
-		if(me.easing.indexOf(key.toLowerCase()) !== -1)
-			initial.easing = key;
+		for(name of me.easing){
+			if(name.toLowerCase()===key.toLowerCase()){
+				if(/\-/.test(name)){
+					initial.easing = name.split('-');
+				}
+			}
+		}
 		}
 
 
@@ -61,6 +69,7 @@ class style{
 			return initial;
 		}else{
 			initial.attr = args[0];
+			this.color(initial.attr);
 		}
 
 		// 去除数组第一个值
@@ -77,16 +86,46 @@ class style{
 		return initial;
 	}
 
-		_easing(){
-			let a = ['linear'],
-			b=['quad','cubic','quart','quint','sine','expo','circ','elastic','back','bounce'],
-			c=['easein','easeout','easeinout'];
+	// 对颜色转换，转成rbga(),这里注意透明度opacity的叠加
+	color(attr){
+		let keys=Object.keys(attr);
+		for(key of keys){
+			//暂时只支持背景颜色，以后可以增加
+			if(this.sty['C'].indexOf(key)===0){
+				try {
 
-			for (b_key of b) {
-				for (c_key of c) {
-					a.push(b_key+'.'+c_key);
+					// 将输入的颜色转换为rgb或ragb字符串
+					let div = createElement('div');
+					div.style.backgroundColor = attr[key];
+					document.body.appendChild(div);
+					let color = window.getComputedStyle(div)[key] ;
+					attr[key] = color;
+					document.body.removeChild(div);
+				} catch(e) {
+					console.error('颜色输入格式有误');
+				}
+				//统一装换成rgba();
+				if(/rgba/.test(attr[key])){
+					continue;
+				}else{
+					attr[key]=attr[key].replace(/^rgb\((.+)\)/,'rgba($1,1)');
 				}
 			}
-			return a;
+		}	
+	}
+
+	_easing(){
+		let a = ['Linear'],
+		b=['Quad','Cubic','Quart','Quint','Sine','Expo','Circ','Elastic','Back','Bounce'],
+		c=['easeIn','easeOut','easeInout'];
+
+		for (b_key of b) {
+			for (c_key of c) {
+				a.push(b_key+'-'+c_key);
+			}
 		}
+		return a;
+	}
+
+
 }

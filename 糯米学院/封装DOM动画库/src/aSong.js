@@ -37,43 +37,106 @@ class aSong{
 		//引入动画时间轴控制模块
 		this.timeline = new timeline();
 		//引入属性模块，处理输入的属性参数
-		this.style = new style(this.ele);
+		this.cssStyle = new style(this.ele);
 	}
 
 /**
  * 	增加动画任务，add animation
- * @param  {object} attr  变化的css属性,必须值
- * @param 	duration      动画持续时间，默认1s
- * @param 	easing        赛贝尔曲线，默认为'linear'
- * @param 	delay         延迟时间,默认为0
+ * @param  {object} attr  变化的css属性,必须值，{'width':'100px','background-color':'#fff'},颜色只支持背景颜色，可以使用各种颜色写法
+ * @param 	duration      动画持续时间，默认1s，可以输入1000,1000ms,1s三种格式
+ * @param 	easing        赛贝尔曲线，默认为'Linear',字符串写法，不区分大小写,中间使用(-)连接
+ * @param 	delay         延迟时间,默认为0，可以输入1000,1000ms,1s三种格式
  */
 	add(attr,duration,easing,delay){
 		let taskFn,
-			type;
+			type,
+			me=this;
 		let args = arguments;
+
 		//得到处理过的对象：
 /*		initial = {
 			attr:null,
 			duration:1000,
-			easing:'linear',
+			easing:['linear'],
 			delay :0
 		};*/
-		let obj=style.initial(args);
+		let obj=cssStyle.initial(args);
+		// 获得算法函数，其实当取得初始值后，就可以简化，因为已经知道其中一个不变的值，使用闭包，函数柯里化
+		let timingFn= easing.length ===1 ? tween[easing[0]] : tween[easing[0]][easing[1]] ;
+		let timeFn = (function () {
+				let d = obj.duration;
+				return function(t,b,c){
+					return timingFn(t,b,c,d);
+				};
+			}());
+
 		//如果处理后没有属性值，加入一个直接切换下一个任务的同步任务
 		if(obj.attr===null){
 			taskFn=(next) =>{next();};
 			type = TASK_SNYC;
 		}else{
-			
-		}
+			// 这里是最重要的函数，动画执行就在这个函数内部
+			taskFn=(next,time) =>{
+				// 如果运行时间大于等于设定值，直接设定属性，不需要算法计算
+				if(time>=obj.duration){
+					changeSytle(obj.attr);
+					next();
+					return;
+				}
 
+				function changeSytle(attr) {
+					for(key in attr){
+						// 防止出错，比如说属性值输入错误
+						//获得变化之后的属性值对象，遍历变化加载属性
+						try {
+							me.ele.style[key] = attr[key];
+						} catch(e) {
+							console.log(e);
+						}
+					}	
+				}
+
+				let  getAttr = function(time) {
+					// 获得算法函数
+					let t = time,
+						newAttr= {};
+					return function(attrs){
+						for(attr of  attrs){
+						let b = me.cssStyle.getStartValue();
+						let c = me.cssStyle.getChangeValue();
+						let value=timeFn(t,b,c);
+							newAttr[attr] = me.cssStyle.changeSytle(value);
+						}
+						return newAttr;
+					}
+				}();
+
+				let attr=getAttr(obj.attr);
+				changeSytle(attr);
+
+
+
+			};
+			type = TASK_ASNYC;
+		}
+		// 如果有等待时间，添加一个同步任务，等待一段时间，执行切换任务
+		if(!obj.delay){
+			taskFn = (next) => {
+				setTimeout(() => {next();},obj.dalay);
+			} 
+			type = TASK_SNYC;
+			this._add(taskFn,type);
+		}
 
 
 		this._add(taskFn,type);
 		return this;
 	}
 
-	// 需要执行的函数
+/**
+ * 执行函数,可以添加在动画之前之后
+ * @param  {Function} callback 要执行的函数
+ */
 	fn(callback){
 		let taskFn= (next) => {
 			callback();
@@ -169,7 +232,7 @@ class aSong{
 		if(task.type === TASK_SNYC){
 			this._tasksnyc(task.taskFn);
 		}else {
-			this._taskasnyc();
+			this._taskasnyc(task.taskFn);
 		}
 
 	}
@@ -192,8 +255,18 @@ class aSong{
 
 	}
 	//执行异步任务
-	_taskasnyc(){
-
+	_taskasnyc(taskFn){
+		let me = this;
+		//这里的时间应该是当前时间-开始时间
+		let do = function (time) {
+			let next = function(){
+				me.timeline.stop();
+				me.do = null;
+			}
+			taskFn (time,next);
+		}
+		this.timeline.do = do;
+		this.timeline.start();
 	}
 
 }

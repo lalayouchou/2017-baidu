@@ -10,4 +10,5 @@
 	margin-left: 100px;
 	background: rgba(200, 200, 200, 0.7);
 	opacity: 0.5;
+	transform: translate(50px, 50px) rotate(20deg);
 }

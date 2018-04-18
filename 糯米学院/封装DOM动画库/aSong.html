@@ -9,7 +9,18 @@
 	<div class="aSong"></div>
 	<script>
 		let div = document.getElementsByClassName('aSong');
-		console.log(window.getComputedStyle(div[0])['background-color']);
+		console.log(window.getComputedStyle(div[0])['transform']);
+(function() {
+	Array.prototype.push.call(arguments,4);
+	console.log(arguments);
+})(1,2,3);
 	</script>
 </body>
 </html>
+var arr=[];
+var a = function (b){
+    var c = b;
+    var d=function(e){
+        return e+c;}
+    arr.push(d)};
+
