@@ -10,17 +10,32 @@
 	<script>
 		let div = document.getElementsByClassName('aSong');
 		console.log(window.getComputedStyle(div[0])['transform']);
-(function() {
-	Array.prototype.push.call(arguments,4);
-	console.log(arguments);
-})(1,2,3);
+    const getTransform = function (m) {
+        const _RAD2DEG = 180 / Math.PI;
+
+        let k = (m.length >= 6),
+            a = k ? m[0] : 1,
+            b = m[1] || 0,
+            c = m[2] || 0,
+            d = k ? m[3] : 1;
+        let translateX = m[4]*1 || 0;
+        let translateY = m[5]*1 || 0; 
+        let scaleX = Math.sqrt(a * a + b * b);
+        let scaleY = Math.sqrt(d * d + c * c);
+        let rotation = (a || b) ? Math.atan2(b, a) * _RAD2DEG : 0; //note: if scaleX is 0, we cannot accurately measure rotation. Same for skewX with a scaleY of 0. Therefore, we default to the previously recorded value (or zero if that doesn't exist).
+        let skewX = (c || d) ? Math.atan2(c, d) * _RAD2DEG + rotation : 0;
+
+        console.log({
+        	translateX,
+        	translateY,
+            scaleX,
+            scaleY,
+            rotateZ: rotation,
+            skewX
+        })
+    };
+		getTransform(window.getComputedStyle(div[0])['transform'].match(/\-?\d+\.?\d+/g));
+
 	</script>
 </body>
 </html>
-var arr=[];
-var a = function (b){
-    var c = b;
-    var d=function(e){
-        return e+c;}
-    arr.push(d)};
-

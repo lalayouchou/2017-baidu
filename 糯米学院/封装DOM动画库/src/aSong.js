@@ -43,6 +43,7 @@ class aSong{
 /**
  * 	增加动画任务，add animation
  * @param  {object} attr  变化的css属性,必须值，{'width':'100px','background-color':'#fff'},颜色只支持背景颜色，可以使用各种颜色写法
+ * 支持的transform属性(2d):['rotateZ','translateX','translateY','scaleX','scaleY','skewX','skewY']
  * @param 	duration      动画持续时间，默认1s，可以输入1000,1000ms,1s三种格式
  * @param 	easing        赛贝尔曲线，默认为'Linear',字符串写法，不区分大小写,中间使用(-)连接
  * @param 	delay         延迟时间,默认为0，可以输入1000,1000ms,1s三种格式
@@ -50,15 +51,23 @@ class aSong{
 	add(attr,duration,easing,delay){
 		let taskFn,
 			type,
-			me=this;
-		let args = arguments;
+			me=this,
+			args = arguments;
 
 		//得到处理过的对象：
 /*		initial = {
-			attr:null,
+			attr:{
+				'width':{
+					begin:0,
+					end:20,
+					JsName:'width',
+					unit:'px'
+				}
+			}
 			duration:1000,
 			easing:['linear'],
 			delay :0
+			}
 		};*/
 		let obj=cssStyle.initial(args);
 		// 获得算法函数，其实当取得初始值后，就可以简化，因为已经知道其中一个不变的值，使用闭包，函数柯里化
@@ -77,50 +86,80 @@ class aSong{
 		}else{
 			// 这里是最重要的函数，动画执行就在这个函数内部
 			taskFn=(next,time) =>{
+				const END = 1;
+				const START = 0;
+				const transform=['rotateX','rotateY','rotateZ','translateX','translateY','translateZ','scaleX','scaleY','scaleZ','skewX','skewY','skewZ'];
 				// 如果运行时间大于等于设定值，直接设定属性，不需要算法计算
 				if(time>=obj.duration){
-					changeSytle(obj.attr);
+					changeSytle(obj.attr,END);
 					next();
 					return;
 				}
+				//如果第一次执行该函数，则执行函数
+				if(obj.first){
+					getFristStyle(obj.attr);
+				}
 
-				function changeSytle(attr) {
-					for(key in attr){
-						// 防止出错，比如说属性值输入错误
-						//获得变化之后的属性值对象，遍历变化加载属性
-						try {
-							me.ele.style[key] = attr[key];
-						} catch(e) {
-							console.log(e);
+				function getFristStyle(attrs) {
+					for(let key in attrs){
+							obj[key] = me.cssStyle.attributes(key,attrs[key]);
 						}
+					}
+					obj.first = false;
+				}
+
+				function getChangeStyle(key,obj) {
+					return me.cssStyle.getChangeStyle(timeFn,time,key,obj);
+				}
+
+				function changeBefore(attrs,type) {
+					let transformValue;
+					for(let key in attrs){
+						if (transform.indexOf(key)===-1) {
+							let unit = attr[key]['unit'],value;
+							if (type === END){
+								value = attr[key]['end'] + unit;
+							}
+							if(type === START){
+								value = getChangeStyle(key,attrs[key]);
+							}
+
+							changeStyle(attrs[key]['JsName'],value);
+							continue;
+						}
+
+						if (type === END){
+							value = attr[key]['end'] + attr[key]['unit'] ;
+						}
+						if(type === START){
+							value = getChangeStyle(key,attrs[key]);
+						}
+
+						transformValue += transformValue + ' '+ key +'('+ value + ')'
+					}
+
+					if (transformValue) {
+						changeSytle('transform',transformValue);
 					}	
 				}
 
-				let  getAttr = function(time) {
-					// 获得算法函数
-					let t = time,
-						newAttr= {};
-					return function(attrs){
-						for(attr of  attrs){
-						let b = me.cssStyle.getStartValue();
-						let c = me.cssStyle.getChangeValue();
-						let value=timeFn(t,b,c);
-							newAttr[attr] = me.cssStyle.changeSytle(value);
-						}
-						return newAttr;
-					}
-				}();
+				function  changeStyle(JsName,value){
+							// 防止出错，比如说属性值输入错误
+							//获得变化之后的属性值对象，遍历变化加载属性
+							try {
+								let style = `${value}`;
+								me.ele.style[JsName] = style;
+							} catch(e) {
+								console.log(e);
+							}
+				}
 
-				let attr=getAttr(obj.attr);
-				changeSytle(attr);
-
-
-
+				changeBefore(obj.attr,START);
 			};
 			type = TASK_ASNYC;
 		}
 		// 如果有等待时间，添加一个同步任务，等待一段时间，执行切换任务
-		if(!obj.delay){
+		if(obj.delay){
 			taskFn = (next) => {
 				setTimeout(() => {next();},obj.dalay);
 			} 

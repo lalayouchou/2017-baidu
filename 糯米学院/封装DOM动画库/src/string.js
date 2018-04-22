@@ -1,0 +1,8 @@
+class string{
+	constructor(){
+
+	}
+
+
+	
+}
